@@ -21,14 +21,12 @@ describe("App component", () => {
   it("should be able to add new repository", async () => {
     const { getByText, getByTestId } = render(<App />);
 
-    apiMock.onGet("repositories").reply(200, []);
-
-    apiMock.onPost("repositories").reply(200, {
-      id: "123",
-      url: "https://github.com/josepholiveira",
-      title: "Desafio ReactJS",
-      techs: ["React", "Node.js"],
-    });
+    apiMock.onGet("/repositories").reply(200, [{
+      id: "123123",
+      link: "https://github.com/josepholiveira",
+      name: "Desafio ReactJS",
+      descripton: "React, Node.js",
+    }]);
 
     await actWait();
 
@@ -52,6 +50,13 @@ describe("App component", () => {
         techs: ["React", "Node.js"],
       },
     ]);
+
+    apiMock.onPost("repositories").reply(200, {
+      id: "123",
+      link: "https://github.com/josepholiveira",
+      name: "Desafio ReactJS",
+      descripton: "React, Node.js"
+    });
 
     apiMock.onDelete("repositories/123").reply(204);
 

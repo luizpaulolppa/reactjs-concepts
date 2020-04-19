@@ -50,31 +50,28 @@ function App() {
 
   return (
     <div className="container">
-      <h1>My repositories</h1>
+      <h1>Desafio JS</h1>
 
-      {
-        repos && repos.length ?
-          <ul data-testid="repository-list">
-            {
-              repos.map((repo) => (
-                <li key={repo.id}>
-                  {repo.name}
+      <ul data-testid="repository-list">
+        {
+          repos.map((repo) => (
+            <li key={repo.id}>
+              {repo.name}
 
-                  <button onClick={() => handleRemoveRepository(repo.id)}>
-                    Remover
-                  </button>
-                </li>
-              ))
-            }
-          </ul>
-          : ""
-      }
+              <button onClick={() => handleRemoveRepository(repo.id)}>
+                Remover
+              </button>
+            </li>
+          ))
+        }
+      </ul>
 
 
       <form onSubmit={handleAddRepository}>
         <input
           type="text"
           placeholder="Nome"
+          name="name"
           maxLength={50}
           value={name}
           onChange={(event) => { setName(event.target.value) }} />
@@ -82,6 +79,7 @@ function App() {
         <input
           type="text"
           placeholder="Descrição"
+          name="description"
           maxLength={50}
           value={description}
           onChange={(event) => { setDescription(event.target.value) }} />
@@ -89,6 +87,7 @@ function App() {
         <input
           type="text"
           placeholder="Link"
+          name="link"
           maxLength={250} 
           value={link}
           onChange={(event) => { setLink(event.target.value) }}/>
